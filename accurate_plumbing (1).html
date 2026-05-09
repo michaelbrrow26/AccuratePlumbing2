@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accurate Plumbing | Goldsboro, NC</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d2137;
+    --navy-mid: #163352;
+    --blue: #1a5fa8;
+    --blue-light: #2a7dd4;
+    --gold: #c8883a;
+    --gold-light: #e0a855;
+    --cream: #f8f5f0;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #f1efe8;
+    --text: #1a1a1a;
+    --text-muted: #555;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(13, 33, 55, 0.97);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    border-bottom: 1px solid rgba(200, 136, 58, 0.25);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-pipe {
+    width: 28px; height: 28px;
+    display: inline-block;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(26, 95, 168, 0.04) 40px,
+        rgba(26, 95, 168, 0.04) 80px
+      );
+    pointer-events: none;
+  }
+
+  .hero-blob {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(26, 95, 168, 0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+    position: relative; z-index: 1;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200, 136, 58, 0.15);
+    border: 1px solid rgba(200, 136, 58, 0.3);
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-desc {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.6); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 2.5rem;
+  }
+
+  .stat {
+    background: rgba(13, 33, 55, 0.7);
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* Hero right — trust card */
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-card-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .pipe-icon {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pipe-icon svg { width: 26px; height: 26px; }
+
+  .hero-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  .hero-card p { color: rgba(255,255,255,0.5); font-size: 0.825rem; }
+
+  .trust-list { list-style: none; }
+  .trust-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .trust-list li:last-child { border-bottom: none; }
+
+  .check {
+    width: 20px; height: 20px;
+    background: rgba(200, 136, 58, 0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .check svg { width: 11px; height: 11px; stroke: var(--gold); }
+
+  .hero-phone {
+    margin-top: 1.5rem;
+    background: rgba(26, 95, 168, 0.15);
+    border: 1px solid rgba(26, 95, 168, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .hero-phone-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-bottom: 2px; }
+  .hero-phone-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+  }
+
+  .phone-badge {
+    background: var(--blue);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* SERVICES */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .services-bg { background: var(--cream); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .service-item {
+    background: var(--white);
+    padding: 1.5rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .service-item:hover { background: #fdf9f4; }
+
+  .service-icon {
+    width: 36px; height: 36px;
+    background: rgba(200, 136, 58, 0.12);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+  .service-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  .service-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .service-sub { font-size: 0.78rem; color: var(--gray); }
+
+  /* REVIEWS */
+  .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
+
+  .star-rating {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 0.5rem;
+  }
+
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 1px; }
+
+  .rating-text { font-size: 0.875rem; color: var(--text-muted); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .review-card {
+    background: var(--cream);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 10px;
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .review-quote {
+    font-size: 2.5rem;
+    color: var(--gold-light);
+    font-family: 'DM Serif Display', serif;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .review-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .review-author { display: flex; align-items: center; gap: 10px; }
+
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .author-name { font-weight: 500; font-size: 0.875rem; color: var(--navy); }
+  .author-sub { font-size: 0.75rem; color: var(--gray); }
+
+  .review-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 1rem;
+  }
+
+  .review-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    background: rgba(26, 95, 168, 0.08);
+    color: var(--blue);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--navy);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+
+  .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+  .cta-section p { color: rgba(255,255,255,0.6); font-weight: 300; max-width: 480px; margin: 0 auto 2rem; font-size: 1rem; line-height: 1.6; }
+
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    background: #08141f;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-info {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.8;
+  }
+
+  .footer-links {
+    display: flex; gap: 1.5rem; justify-content: center;
+    margin-top: 1rem; flex-wrap: wrap;
+  }
+  .footer-links a { color: rgba(255,255,255,0.35); font-size: 0.78rem; text-decoration: none; }
+  .footer-links a:hover { color: rgba(255,255,255,0.65); }
+
+  /* HERO PHOTO CARD */
+  .hero-photo-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 480px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .hero-photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .hero-photo-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(8,20,31,0.97) 0%, rgba(8,20,31,0.85) 60%, transparent 100%);
+    padding: 1.5rem;
+  }
+  .hero-photo-overlay .trust-list li {
+    border-bottom-color: rgba(255,255,255,0.06);
+    font-size: 0.82rem;
+    padding: 0.55rem 0;
+  }
+  .hero-photo-overlay .hero-phone {
+    margin-top: 1rem;
+    background: rgba(26, 95, 168, 0.2);
+    border-color: rgba(26, 95, 168, 0.4);
+  }
+
+  /* PHOTO BANNER */
+  .photo-banner {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+  }
+  .photo-banner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+  .photo-banner-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(13,33,55,0.92) 0%, rgba(13,33,55,0.45) 55%, transparent 100%);
+    display: flex; align-items: center;
+    padding: 3rem 4rem;
+  }
+  .photo-banner-text h2 { color: var(--white); margin-bottom: 0.75rem; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .photo-banner-text p { color: rgba(255,255,255,0.65); font-size: 1rem; font-weight: 300; line-height: 1.6; max-width: 380px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-content { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-photo-card { height: 340px; }
+    .nav-links { display: none; }
+    .reviews-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .photo-banner { height: 260px; }
+    .photo-banner-overlay { padding: 2rem; }
+  }
+
+  /* HERO PHOTO CARD */
+  .hero-photo-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 480px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .hero-photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .hero-photo-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(8,20,31,0.97) 0%, rgba(8,20,31,0.85) 60%, transparent 100%);
+    padding: 1.5rem;
+  }
+  .hero-photo-overlay .trust-list li {
+    border-bottom-color: rgba(255,255,255,0.06);
+    font-size: 0.82rem;
+    padding: 0.55rem 0;
+  }
+  .hero-photo-overlay .hero-phone {
+    margin-top: 1rem;
+    background: rgba(26, 95, 168, 0.2);
+    border-color: rgba(26, 95, 168, 0.4);
+  }
+  /* PHOTO BANNER */
+  .photo-banner {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+  }
+  .photo-banner img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+  .photo-banner-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(13,33,55,0.92) 0%, rgba(13,33,55,0.45) 55%, transparent 100%);
+    display: flex; align-items: center;
+    padding: 3rem 4rem;
+  }
+  .photo-banner-text h2 { color: var(--white); margin-bottom: 0.75rem; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .photo-banner-text p { color: rgba(255,255,255,0.65); font-size: 1rem; font-weight: 300; line-height: 1.6; max-width: 380px; }
+  @media (max-width: 768px) {
+    .hero-photo-card { height: 340px; }
+    .photo-banner { height: 260px; }
+    .photo-banner-overlay { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-pipe" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="11" width="20" height="6" rx="3" fill="#c8883a"/>
+      <rect x="10" y="4" width="6" height="10" rx="3" fill="#c8883a"/>
+      <rect x="10" y="14" width="6" height="10" rx="3" fill="#c8883a" opacity="0.6"/>
+    </svg>
+    Accurate <span>&nbsp;Plumbing</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:2522759417" class="nav-cta">(252) 275-9417</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Serving Goldsboro &amp; Surrounding Areas
+      </div>
+      <h1>Plumbing done <em>right,</em><br>every time.</h1>
+      <p class="hero-desc">
+        Accurate Plumbing brings 14+ years of professional service to your home. Background checked, licensed, and always on time.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:2522759417" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .97h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.3-1.3a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Now
+        </a>
+        <a href="#services" class="btn-secondary">
+          View Services →
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">14+</span>
+          <span class="stat-label">Years in business</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">4.5★</span>
+          <span class="stat-label">Google rating</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">84</span>
+          <span class="stat-label">Reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-photo-card">
+      <img src="/mnt/user-data/uploads/marian-florinel-condruz-C-oYJoIfgCs-unsplash.jpg" alt="Plumber servicing a water heater" class="hero-photo-img" />
+      <div class="hero-photo-overlay">
+        <ul class="trust-list">
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Passed background check &amp; license verification</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calls ahead before arrival — no waiting around</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Reasonably priced with transparent estimates</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Always cleans up after the job is done</li>
+        </ul>
+        <div class="hero-phone">
+          <div>
+            <div class="hero-phone-label">Call or text us</div>
+            <div class="hero-phone-num">(252) 275-9417</div>
+          </div>
+          <span class="phone-badge">Open Now</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card" style="display:none"><div class="hero-card-header">
+        <div class="pipe-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0d2137" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v6M12 16v6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M16 12h6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Why Choose Us?</h3>
+          <p>Verified · Licensed · Local</p>
+        </div>
+      </div>
+      <ul class="trust-list">
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Passed background check &amp; license verification
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Calls ahead before arrival — no waiting around
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Reasonably priced with transparent estimates
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3" stroke="#c8883a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Always cleans up after the job is done
+        </li>
+      </ul>
+      <div class="hero-phone">
+        <div>
+          <div class="hero-phone-label">Call or text us</div>
+          <div class="hero-phone-num">(252) 275-9417</div>
+        </div>
+        <span class="phone-badge">Open Now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="section-inner">
+    <p class="section-label">What we do</p>
+    <h2>Full-service plumbing<br>for your home</h2>
+    <p class="section-desc">From a dripping faucet to a full water heater install — we handle it all, quickly and professionally.</p>
+
+    <div class="services-grid">
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6 8 4 13 4 16a8 8 0 0016 0c0-3-2-8-8-14z"/></svg>
+        </div>
+        <div class="service-name">Leak Detection &amp; Repair</div>
+        <div class="service-sub">Find &amp; fix any leak</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14M5 21h14M12 3v18M3 12h18"/></svg>
+        </div>
+        <div class="service-name">Faucet Services</div>
+        <div class="service-sub">Install or repair</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M3 12h5M16 12h5M12 3v5M12 16v5"/></svg>
+        </div>
+        <div class="service-name">Garbage Disposal</div>
+        <div class="service-sub">Install or repair</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="2"/><path d="M9 7h6M9 11h6"/></svg>
+        </div>
+        <div class="service-name">Water Heater</div>
+        <div class="service-sub">Install or repair</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16M4 8h16M12 8v12M8 20h8"/></svg>
+        </div>
+        <div class="service-name">Pipe Repair</div>
+        <div class="service-sub">All pipe types</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 20a5 5 0 0110 0M12 4v10M9 10l3 3 3-3"/></svg>
+        </div>
+        <div class="service-name">Drain Cleaning</div>
+        <div class="service-sub">Unclog any drain</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a6 6 0 016 6v4H6V8a6 6 0 016-6zM6 12v4a6 6 0 0012 0v-4"/></svg>
+        </div>
+        <div class="service-name">Toilet Repair</div>
+        <div class="service-sub">Fix any issue</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12c0-5 9-9 9-9s9 4 9 9v6a3 3 0 01-3 3H6a3 3 0 01-3-3v-6z"/></svg>
+        </div>
+        <div class="service-name">Shower Repair</div>
+        <div class="service-sub">Full shower service</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19h16M4 4h16v10H4zM9 14v5M15 14v5"/></svg>
+        </div>
+        <div class="service-name">Sewer Repair</div>
+        <div class="service-sub">Main line &amp; lateral</div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <div class="service-name">Outdoor Systems</div>
+        <div class="service-sub">Hoses, sprinklers &amp; more</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PHOTO BANNER -->
+<div class="photo-banner">
+  <img src="/mnt/user-data/uploads/wesley-caribe-TtN_obfWlGw-unsplash.jpg" alt="Professional plumbing tools and parts" />
+  <div class="photo-banner-overlay">
+    <div class="photo-banner-text">
+      <p class="section-label" style="margin-bottom:0.5rem;">Always prepared</p>
+      <h2>Equipped for<br>every job</h2>
+      <p>We arrive with the parts and tools to get the job done right the first time — no extra trips, no delays.</p>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-inner">
+    <div class="reviews-header">
+      <div>
+        <p class="section-label">Customer reviews</p>
+        <h2>What our customers say</h2>
+        <div class="star-rating">
+          <span class="stars">★★★★½</span>
+          <span class="rating-text">4.5 out of 5 · 84 reviews on Google</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <p class="review-text">Squeezed me in when I was in a bind. Very reasonably priced. This will be my go-to company for plumbing!</p>
+        <div class="review-tags">
+          <span class="review-tag">Responsive</span>
+          <span class="review-tag">Punctual</span>
+          <span class="review-tag">Quality</span>
+          <span class="review-tag">Value</span>
+        </div>
+        <div class="review-author" style="margin-top: 1.25rem;">
+          <div class="author-avatar">JP</div>
+          <div>
+            <div class="author-name">Jeff Poston</div>
+            <div class="author-sub">Plumbing pipe repair</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <p class="review-text">Fantastic service and very reasonably priced. He was on time and called ahead. They were quick, did the job right, and cleaned up after themselves. I definitely recommend them.</p>
+        <div class="review-tags">
+          <span class="review-tag">Responsive</span>
+          <span class="review-tag">Punctual</span>
+          <span class="review-tag">Professional</span>
+          <span class="review-tag">Value</span>
+        </div>
+        <div class="review-author" style="margin-top: 1.25rem;">
+          <div class="author-avatar">JH</div>
+          <div>
+            <div class="author-name">Jonathan Hoover</div>
+            <div class="author-sub">Verified Google review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card" style="background: var(--navy); border-color: rgba(255,255,255,0.08);">
+        <p style="color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;">Our promise</p>
+        <p style="font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--white); line-height: 1.4; margin-bottom: 1.5rem;">"We treat every job like it's our own home."</p>
+        <ul style="list-style: none;">
+          <li style="color: rgba(255,255,255,0.6); font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; gap: 10px; align-items: center;">
+            <span style="color: var(--gold);">✓</span> Always call ahead before arrival
+          </li>
+          <li style="color: rgba(255,255,255,0.6); font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; gap: 10px; align-items: center;">
+            <span style="color: var(--gold);">✓</span> Fair, transparent pricing upfront
+          </li>
+          <li style="color: rgba(255,255,255,0.6); font-size: 0.85rem; padding: 0.5rem 0; display: flex; gap: 10px; align-items: center;">
+            <span style="color: var(--gold);">✓</span> Leave your home clean &amp; tidy
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <p class="section-label" style="color: var(--gold);">Ready to get started?</p>
+    <h2>Need a plumber today?</h2>
+    <p>We serve Goldsboro and the surrounding area. Call or text us and we'll get you taken care of.</p>
+    <div class="cta-actions">
+      <a href="tel:2522759417" class="btn-primary" style="font-size: 1rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .97h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.3-1.3a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (252) 275-9417
+      </a>
+      <a href="#services" class="btn-outline">Browse Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Accurate <span>Plumbing</span></div>
+  <div class="footer-info">
+    Goldsboro, NC · Serving Goldsboro &amp; Surrounding Areas<br>
+    Open · Closes 7:30 PM · (252) 275-9417<br>
+    Background Checked · Licensed · 14+ Years
+  </div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="tel:2522759417">Call Us</a>
+  </div>
+</footer>
+
+</body>
+</html>
